@@ -3,6 +3,8 @@ import type { Express, Request, Response } from 'express';
 
 import { PrismaClient } from '@prisma/client';
 
+import { PORT } from './secrets';
+
 const app: Express = express();
 
 app.use(express.json());
@@ -15,6 +17,6 @@ app.get('/', (req: Request, res: Response) => {
   res.send('Working');
 });
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
   console.log('App working');
 });
