@@ -1,10 +1,15 @@
 import { Router } from 'express';
 import { errorHandler } from '../error-handler';
-import { createProduct } from '../controllers/products.controller';
+import { createProduct, deleteProduct, getProductById, listProducts, updateProduct } from '../controllers/products.controller';
 import authMiddleware from '../middlewares/auth';
+import adminMiddleware from '../middlewares/admin';
 
 const productsRouter: Router = Router();
 
-productsRouter.post('/', [authMiddleware], errorHandler(createProduct));
+productsRouter.post('/', [authMiddleware, adminMiddleware], errorHandler(createProduct));
+productsRouter.put('/:id',[authMiddleware, adminMiddleware], errorHandler(updateProduct))
+productsRouter.delete('/:id',[authMiddleware, adminMiddleware], errorHandler(deleteProduct))
+productsRouter.get('/',[authMiddleware, adminMiddleware], errorHandler(listProducts))
+productsRouter.get('/:id',[authMiddleware, adminMiddleware], errorHandler(getProductById))
 
 export default productsRouter;
