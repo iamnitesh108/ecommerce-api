@@ -23,7 +23,7 @@ export const signup = async (
   let user = await prismaClient.user.findFirst({ where: { email: email } });
 
   if (user) {
-    new BadRequestsException(
+    throw new BadRequestsException(
       'User already exists',
       ErrorCode.USER_ALREADY_EXISTS
     );
