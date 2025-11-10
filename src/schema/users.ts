@@ -15,3 +15,8 @@ export const LoginSchema = z.object({
 
 export type LoginInput = z.infer<typeof LoginSchema>;
               
+export const UpdateUserSchema = z.object({
+    name: z.string().optional(),
+    defaultShippingAddressId: z.number().optional(),
+    defaultBillingAddressId: z.number().optional()
+})
